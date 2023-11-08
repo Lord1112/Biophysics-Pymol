@@ -11,8 +11,8 @@ def chainCleaner(chain,chainID):
             cleanedChain.add(i)
     return(cleanedChain)
 
-parser = PDBParser()
-unStructure=parser.get_structure("6m0j.pdb","6m0j.pdb")
+parser = PDBParser(QUIET=True)
+unStructure=parser.get_structure("6m0j","6m0j.pdb")
 unChainA = unStructure[0]["A"]
 unChainE = unStructure[0]["E"]
         
