@@ -52,3 +52,4 @@ args['build_warnings'] = False
 args['coords_only'] = False
 args['overwrite'] = False
 args['output_format'] = 'pdb'
+args['keep_canonical'] = False
