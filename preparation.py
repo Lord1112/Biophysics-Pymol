@@ -78,4 +78,5 @@ args['keep_canonical'] = False
 st_c = StructureChecking(base_dir_path, args)
 
 st_c.add_hydrogen('auto')
-st_c._save_structure("hola.pdb")
+
+st_c._save_structure("fixed_6m0j.pdb")
