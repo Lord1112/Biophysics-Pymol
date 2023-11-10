@@ -17,11 +17,12 @@ def chainCleanerDetach(structure,chain_id):
                              'GLY', 'HIS', 'ILE', 'LYS', 'LEU', 
                              'MET', 'ASN', 'PRO', 'GLN', 'ARG', 
                              'SER', 'THR', 'VAL', 'TRP', 'TYR'}:
-            print(structure[0][chain_id].__getitem__(i.id)["het"])
+            
             structure[0][chain_id].detach_child(i.id)
-
+'''
 parser = PDBParser(get_header=True,QUIET=True)
 structure=parser.get_structure("6m0j","6m0j.pdb")
+
 chainCleanerDetach(structure,"A")
 chainCleanerDetach(structure,"E")
 
@@ -29,11 +30,10 @@ pdbCreator=PDBIO()
 
 pdbCreator.set_structure(structure)
 pdbCreator.save("cl_d6m0j.pdb")
-
-
+'''
 
 parser = PDBParser(QUIET=True)
-unStructure=parser.get_structure("6m0j","6m0j.pdb")
+structure=parser.get_structure("6m0j","6m0j.pdb")
 unChainA = structure[0]["A"]
 unChainE = structure[0]["E"]
         
@@ -61,7 +61,7 @@ base_dir_path=biobb_structure_checking.__path__[0]
 
 args = cts.set_defaults(base_dir_path,{'notebook':True})
 args['input_structure_path'] = 'cl_d6m0j.pdb'
-args['output_structure_path'] = 'cl_dm0j_fixed.pdb'
+args['output_structure_path'] = 'cl_d6m0j_fixed.pdb'
 args['output_structure_path_charges'] = 'cl_d6m0j_fixed.pdbqt'
 args['debug'] = False
 args['verbose'] = False
