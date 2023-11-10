@@ -14,8 +14,8 @@ def chainCleaner(chain,chainID):
 
 parser = PDBParser(QUIET=False)
 unStructure=parser.get_structure("6m0j","6m0j.pdb")
-unChainA = unStructure[0]["A"]
-unChainE = unStructure[0]["E"]
+unChainA = structure[0]["A"]
+unChainE = structure[0]["E"]
         
 clChainA= chainCleaner(unChainA,"A")
 clChainE= chainCleaner(unChainE,"E")
@@ -38,11 +38,11 @@ import biobb_structure_checking
 import biobb_structure_checking.constants as cts
 from biobb_structure_checking.structure_checking import StructureChecking
 base_dir_path=biobb_structure_checking.__path__[0]
-base_path = ''
+
 args = cts.set_defaults(base_dir_path,{'notebook':True})
-args['input_structure_path'] = base_path + 'cl_d6m0j.pdb'
-args['output_structure_path'] = base_path + '6m0j_fixed.pdb'
-args['output_structure_path_charges'] = base_path + '6m0j_fixed.pdbqt'
+args['input_structure_path'] = 'cl_d6m0j.pdb'
+args['output_structure_path'] = 'cl_dm0j_fixed.pdb'
+args['output_structure_path_charges'] = 'cl_d6m0j_fixed.pdbqt'
 args['debug'] = False
 args['verbose'] = False
 #Added missing defaults
