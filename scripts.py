@@ -11,6 +11,25 @@ def chainCleaner(chain,chainID):
             cleanedChain.add(i)
     return(cleanedChain)
 
+def chainCleanerDetach(structure,chain_id):
+    for i in structure[0][chain_id]:
+        if i.resname not in {'ALA', 'CYS', 'ASP', 'GLU', 'PHE', 
+                             'GLY', 'HIS', 'ILE', 'LYS', 'LEU', 
+                             'MET', 'ASN', 'PRO', 'GLN', 'ARG', 
+                             'SER', 'THR', 'VAL', 'TRP', 'TYR'}:
+            structure[0][chain_id].detach_child(i.id)
+    
+parser = PDBParser(QUIET=True)
+structure=parser.get_structure("6m0j","6m0j.pdb")
+chainCleanerDetach(structure,"A")
+chainCleanerDetach(structure,"E")
+
+pdbCreator=PDBIO()
+pdbCreator.set_structure(structure)
+pdbCreator.save("cl_d6m0j.pdb")
+
+
+'''
 parser = PDBParser(QUIET=True)
 unStructure=parser.get_structure("6m0j","6m0j.pdb")
 unChainA = unStructure[0]["A"]
@@ -57,3 +76,4 @@ st_c = StructureChecking(base_dir_path, args)
 
 st_c.add_hydrogen()
 st_c._save_structure("hola.pdb")
+'''
