@@ -14,8 +14,8 @@ def find_interface_residues(chain1, chain2, distance_threshold):
                 for atom2 in residue2:
                     distance = calculate_distance(atom1, atom2)
                     if distance < distance_threshold:
-                        interface_residues_chain1.add(residue1.resname)
-                        interface_residues_chain2.add(residue2.resname)
+                        interface_residues_chain1.add(residue1)
+                        interface_residues_chain2.add(residue2)
 
     return interface_residues_chain1, interface_residues_chain2
 
