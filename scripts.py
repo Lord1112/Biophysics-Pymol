@@ -1,3 +1,4 @@
+import io
 from Bio.PDB import *
 from Bio.PDB import Chain
 from Bio.PDB import Model
@@ -11,7 +12,7 @@ def chainCleaner(chain,chainID):
             cleanedChain.add(i)
     return(cleanedChain)
 
-parser = PDBParser(QUIET=True)
+parser = PDBParser(QUIET=False)
 unStructure=parser.get_structure("6m0j","6m0j.pdb")
 unChainA = unStructure[0]["A"]
 unChainE = unStructure[0]["E"]
@@ -28,7 +29,7 @@ clStructure = Structure.Structure(0)
 
 clStructure.add(clModel)
 
-#Save the cleaned structure to a pdb file
+# Save the cleaned structure to a pdb file
 pdbCreator=PDBIO()
 pdbCreator.set_structure(clStructure)
 pdbCreator.save("cl_d6m0j.pdb")
@@ -39,7 +40,7 @@ from biobb_structure_checking.structure_checking import StructureChecking
 base_dir_path=biobb_structure_checking.__path__[0]
 base_path = ''
 args = cts.set_defaults(base_dir_path,{'notebook':True})
-args['input_structure_path'] = base_path + '6m0j.cif'
+args['input_structure_path'] = base_path + 'cl_d6m0j.pdb'
 args['output_structure_path'] = base_path + '6m0j_fixed.pdb'
 args['output_structure_path_charges'] = base_path + '6m0j_fixed.pdbqt'
 args['debug'] = False
@@ -52,3 +53,7 @@ args['build_warnings'] = False
 args['coords_only'] = False
 args['overwrite'] = False
 args['output_format'] = 'pdb'
+
+structure_checking = StructureChecking(base_dir_path, args)
+structure_checking.run()
+
