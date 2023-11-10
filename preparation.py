@@ -73,6 +73,7 @@ args['build_warnings'] = False
 args['coords_only'] = False
 args['overwrite'] = False
 args['output_format'] = 'pdb'
+args['keep_canonical'] = False
 
 st_c = StructureChecking(base_dir_path, args)
 
