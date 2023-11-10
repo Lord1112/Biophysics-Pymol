@@ -1,4 +1,3 @@
-import io
 from Bio.PDB import *
 from Bio.PDB import Chain
 from Bio.PDB import Model
@@ -12,7 +11,28 @@ def chainCleaner(chain,chainID):
             cleanedChain.add(i)
     return(cleanedChain)
 
-parser = PDBParser(QUIET=False)
+def chainCleanerDetach(structure,chain_id):
+    for i in structure[0][chain_id]:
+        if i.resname not in {'ALA', 'CYS', 'ASP', 'GLU', 'PHE', 
+                             'GLY', 'HIS', 'ILE', 'LYS', 'LEU', 
+                             'MET', 'ASN', 'PRO', 'GLN', 'ARG', 
+                             'SER', 'THR', 'VAL', 'TRP', 'TYR'}:
+            print(structure[0][chain_id].__getitem__(i.id)["het"])
+            structure[0][chain_id].detach_child(i.id)
+
+parser = PDBParser(get_header=True,QUIET=True)
+structure=parser.get_structure("6m0j","6m0j.pdb")
+chainCleanerDetach(structure,"A")
+chainCleanerDetach(structure,"E")
+
+pdbCreator=PDBIO()
+
+pdbCreator.set_structure(structure)
+pdbCreator.save("cl_d6m0j.pdb")
+
+
+
+parser = PDBParser(QUIET=True)
 unStructure=parser.get_structure("6m0j","6m0j.pdb")
 unChainA = structure[0]["A"]
 unChainE = structure[0]["E"]
@@ -29,7 +49,7 @@ clStructure = Structure.Structure(0)
 
 clStructure.add(clModel)
 
-# Save the cleaned structure to a pdb file
+#Save the cleaned structure to a pdb file
 pdbCreator=PDBIO()
 pdbCreator.set_structure(clStructure)
 pdbCreator.save("cl_d6m0j.pdb")
@@ -54,6 +74,7 @@ args['coords_only'] = False
 args['overwrite'] = False
 args['output_format'] = 'pdb'
 
-structure_checking = StructureChecking(base_dir_path, args)
-structure_checking.run()
+st_c = StructureChecking(base_dir_path, args)
 
+st_c.add_hydrogen('auto')
+st_c._save_structure("hola.pdb")
