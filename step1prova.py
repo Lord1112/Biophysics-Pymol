@@ -31,10 +31,9 @@ chain_B = structure[0]["E"]
 # Define the distance threshold for interface residues
 distance_threshold = 3.0  
 
-# Find interface residues
+# Find  thie interface residues
 interface_residues_A, interface_residues_B = find_interface_residues(chain_A, chain_B, distance_threshold)
 
-# Print 
 print("Interface residues in Chain A:")
 for residue_index, residue_obj in interface_residues_A:
     print(f"Residue {residue_index} in Chain A: {residue_obj}")
