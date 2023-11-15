@@ -14,7 +14,7 @@ def get_interface_residues(structure, chain, distance_threshold):
 
 # Cambia "tu_estructura.pdb" al nombre de tu archivo PDB y ajusta "A" y "B" a las cadenas relevantes.
 parser = PDBParser(QUIET=True)
-structure = parser.get_structure("6m0j", "6mj0.pdb")
+structure = parser.get_structure("6m0j", "hola.pdb")
 
 #distancia de contacto que determinaste en PyMOL
 distance_threshold = 2.0
