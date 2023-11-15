@@ -1,4 +1,5 @@
 from Bio.PDB import PDBParser
+from Bio.PDB import Structure
 
 def calculate_distance(atom1, atom2):
     # Calculate the Euclidean distance between two atoms
@@ -28,7 +29,7 @@ chain_A = structure[0]["A"]
 chain_B = structure[0]["E"]
 
 # Define the distance threshold for interface residues
-distance_threshold = 3.0  
+distance_threshold = 3.5  
 
 # Find interface residues
 interface_residues_A, interface_residues_B = find_interface_residues(chain_A, chain_B, distance_threshold)
@@ -36,4 +37,8 @@ interface_residues_A, interface_residues_B = find_interface_residues(chain_A, ch
 # Print or further process the interface residues
 print("Interface residues in Chain A:", interface_residues_A)
 print("Interface residues in Chain B:", interface_residues_B)
+
+newStructure = Structure.Structure(0)
+
+newStructure.add(interface_residues_A, interface_residues_B)
 

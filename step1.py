@@ -6,7 +6,7 @@ def get_interface_residues(structure, chain, distance_threshold):
     for model in structure:
         for residue_a in model[chain]:
             for residue_e in model[chain]:
-                if residue_a != residue_e and residue_a - residue_e < distance_threshold:
+                if residue_a.resname != residue_e.resname and residue_a.get_vector() - residue_e < distance_threshold:
                     interface_residues.add(residue_a)
                     interface_residues.add(residue_e)
 
