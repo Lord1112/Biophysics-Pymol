@@ -15,8 +15,9 @@ def find_interface_residues(chain1, chain2, distance_threshold):
                 for atom2 in residue2:
                     distance = calculate_distance(atom1, atom2)
                     if distance < distance_threshold:
-                        interface_residues_chain1.add(residue1)
-                        interface_residues_chain2.add(residue2)
+                        # Store a tuple with residue index and residue object
+                        interface_residues_chain1.add((residue1.id[1], residue1))
+                        interface_residues_chain2.add((residue2.id[1], residue2))
 
     return interface_residues_chain1, interface_residues_chain2
 
@@ -31,12 +32,16 @@ chain_B = structure[0]["E"]
 # Define the distance threshold for interface residues
 distance_threshold = 3.5  
 
-# Find interface residues
+# Find  thie interface residues
 interface_residues_A, interface_residues_B = find_interface_residues(chain_A, chain_B, distance_threshold)
 
-# Print or further process the interface residues
-print("Interface residues in Chain A:", interface_residues_A)
-print("Interface residues in Chain B:", interface_residues_B)
+print("Interface residues in Chain A:")
+for residue_index, residue_obj in interface_residues_A:
+    print(f"Residue {residue_index} in Chain A: {residue_obj}")
+
+print("\nInterface residues in Chain B:")
+for residue_index, residue_obj in interface_residues_B:
+    print(f"Residue {residue_index} in Chain B: {residue_obj}")
 
 newStructure = Structure.Structure(0)
 
