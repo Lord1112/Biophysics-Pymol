@@ -10,7 +10,7 @@ st = parser.get_structure("cl_d6m0j.pdb", "6m0j.pdb")
 # Assume you have two chains A and B
 chain_A = st[0]["A"]
 chain_B = st[0]["E"]
-path_lib = 'parameters/aaLib.lib'
+path_lib = 'parameters/aalib.lib'
 
 res_lib = {}
 
