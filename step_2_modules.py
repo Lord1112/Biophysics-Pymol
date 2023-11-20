@@ -97,8 +97,7 @@ def calc_int_energies(chain_A, chain_B):
 
     for at1 in chain_B.get_atoms():
         for at2 in chain_A.get_atoms():
-        # skip same chain atom pairs
-#            if at2.get_parent().get_parent() != res.get_parent():
+        #
             r = at1 - at2
             e = elec_int(at1, at2, r)
             elec += e
