@@ -33,11 +33,10 @@ parser.add_argument(
     help='Vdw parameters'
 )
 
-parser.add_argument('pdb_file.name', default='fixed_6m0j.pdb',help='Input PDB', type=open)
+parser.add_argument('pdb_file',help='Input PDB', type=open )
 
 args = parser.parse_args()
 
-print("ok")
 print("PDB.filename:", args.pdb_file.name)
 print("Residue Lib.:", args.reslib_file)
 print("PDB.filename:", args.vdwprm_file)
