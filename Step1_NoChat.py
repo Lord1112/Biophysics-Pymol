@@ -6,10 +6,10 @@ def get_interface(structure,threshold):
     chainE=structure[0]["E"]
     residueSetA=set()
     residueSetE=set()
-    for i in chainA.get_residues():
-        for y in i.get_atoms():
-            for j in chainE.get_residues():
-                for z in j.get_atoms():                
+    for i in chainA:
+        for y in i:
+            for j in chainE:
+                for z in j:                
                     if y-z <= threshold:
                         residueSetA.add(i)
                         residueSetE.add(j)
