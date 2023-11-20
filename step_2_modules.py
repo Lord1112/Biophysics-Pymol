@@ -64,6 +64,7 @@ def MH_diel(r):
 
 def elec_int(at1, at2, r):
     '''Electrostatic interaction energy between two atoms at r distance'''
+    print(at1.xtra)
     return 332.16 * at1.xtra['charge'] * at2.xtra['charge'] / MH_diel(r) / r
 
 def vdw_int(at1, at2, r):
