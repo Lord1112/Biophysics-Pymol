@@ -342,6 +342,11 @@ with open("int_energy_ DG.txt", "a") as result:
             elec[res], elec_ala[res], vdw[res], vdw_ala[res] = calc_int_energies(st[0], res)
             solvAB[res], solvAB_ala[res] = calc_solvation(st[0], res)
             solvA[res], solvA_ala[res] = calc_solvation(st_chains[ch.id], st_chains[ch.id][0][ch.id][res.id[1]])
+            print(elec[res], elec_ala[res], vdw[res], vdw_ala[res])
+            print(solvAB[res], solvAB_ala[res])
+            print(solvA[res], solvA_ala[res])
+
+
 
             # Add the values
             totalIntElec += elec[res]
