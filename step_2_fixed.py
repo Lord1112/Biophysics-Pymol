@@ -64,8 +64,8 @@ class VdwParamset(): #extracted from GELPI's github
         self.ntypes = len(self.at_types)
         fh.close()
 
-residue_library = ResiduesDataLib('/home/ismael/2/biofisica/Biophysics-Pymol/parameters/aalib.lib')
-ff_params = VdwParamset('/home/ismael/2/biofisica/Biophysics-Pymol/parameters/vdwprm.txt')
+residue_library = ResiduesDataLib('parameters/aalib.lib')
+ff_params = VdwParamset('parameters/vdwprm.txt')
 
 # set the pdb_path and load the structure
 pdb_path = "fixed_6m0j.pdb"
@@ -73,3 +73,4 @@ pdb_path = "fixed_6m0j.pdb"
 parser = PDBParser(PERMISSIVE=1)
 # Loading structure
 st = parser.get_structure('st', pdb_path)
+
