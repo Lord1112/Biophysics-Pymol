@@ -948,9 +948,9 @@ GLYN HA3  H      0.0895
 GLYN C    C      0.6163
 GLYN O    O     -0.5722
 SERN N    NC     0.1849
-SERN H1   HN     0.1898
-SERN H2   HN     0.1898
-SERN H3   HN     0.1898
+SER H1   HN     0.1898
+SER H2   HN     0.1898
+SER H3   HN     0.1898
 SERN CA   C      0.0567
 SERN HA   H      0.0782
 SERN CB   C      0.2596
@@ -962,9 +962,9 @@ SERN HG   HO     0.4239
 SERN C    C      0.6163
 SERN O    O     -0.5722
 THRN N    NC     0.1812
-THRN H1   HN     0.1934
-THRN H2   HN     0.1934
-THRN H3   HN     0.1934
+THR H1   HN     0.1934
+THR H2   HN     0.1934
+THR H3   HN     0.1934
 THRN CA   C      0.0034
 THRN HA   H      0.1087
 THRN CB   C      0.4514

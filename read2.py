@@ -69,4 +69,4 @@ for at in st.get_atoms():
 # Calculating surfaces
 # The specific PATH to naccess script (in soft) is needed
 # Srf goes to .xtra field directly
-srf = NACCESS_atomic(st[0], naccess_binary='PATH_TO_NACCESS')
+srf = NACCESS_atomic(st[0], naccess_binary='si/soft/NACCESS/naccess')
