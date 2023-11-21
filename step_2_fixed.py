@@ -269,7 +269,8 @@ st = parser.get_structure('st', pdb_path)
 
 #srf = NACCESS_atomic(st[0], naccess_binary='si/soft/NACCESS/naccess')
 
-
+NACCESS_BINARY = '/home/adria/Desktop/Biofisica/Biophysics-Pymol/si/soft/NACCESS/naccess'
+srf = NACCESS_atomic(st[0], naccess_binary=NACCESS_BINARY)
 
 
 #Possible Atom names that correspond to Ala atoms"
@@ -281,8 +282,6 @@ add_atom_parameters(st, residue_library, ff_params)
 #    print()
 
 t=get_interface(st, 3.5)
-print(t)
-r=calc_solvation(st, t)
-
-
-
+#print(t)
+#r=calc_solvation(st, t)
+#print(r)
