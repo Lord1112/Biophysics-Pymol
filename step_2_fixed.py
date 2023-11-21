@@ -208,7 +208,6 @@ def elec_int(at1, at2, r):
 
 def vdw_int(at1, at2, r):
     '''Vdw interaction energy between two atoms'''
-    print(at1.xtra['vdw'])
     eps12 = math.sqrt(at1.xtra['vdw'].eps * at2.xtra['vdw'].eps)
     sig12_2 = at1.xtra['vdw'].sig * at2.xtra['vdw'].sig
     return 4 * eps12 * (sig12_2**6/r**12 - sig12_2**3/r**6)
@@ -281,7 +280,81 @@ add_atom_parameters(st, residue_library, ff_params)
 #for i in st.get_atoms():
 #    print()
 
-t=get_interface(st, 3.5)
+
 #print(t)
-#r=calc_solvation(st, t)
-#print(r)
+io = PDBIO()
+st_chains = {}
+
+
+class SelectChain(Select):
+    def __init__(self, chid):
+        self.id = chid
+
+    def accept_chain(self, chain):
+        if chain.id == self.id:
+            return 1
+        else:
+            return 0
+        
+for ch in st[0]:
+    io.set_structure(st)
+    io.save('tmp.pdb', SelectChain(ch.id))
+    st_chains[ch.id] = parser.get_structure('stA', 'tmp.pdb')
+    add_atom_parameters(st_chains[ch.id], residue_library, ff_params)
+    srfA = NACCESS_atomic(st_chains[ch.id][0], naccess_binary=NACCESS_BINARY)
+os.remove('tmp.pdb')
+max_dist = 3.5
+interface = get_interface(st, max_dist)
+
+# Inizialize dictionaries to store energies individually for each chain
+elec = {}
+elec_ala = {}
+
+vdw = {}
+vdw_ala = {}
+
+solvAB = {}
+solvAB_ala = {}
+
+solvA = {}
+solvA_ala = {}
+
+# Inizialize conter variables to 0
+totalIntElec = 0.
+totalIntVdw = 0.
+totalSolv = 0.
+totalSolvMon = {}
+
+chids = []
+for ch in st[0]:
+    chids.append(ch.id)
+    totalSolvMon[ch.id] = 0
+
+total = 0
+
+with open("int_energy_ DG.txt", "a") as result:
+    for ch in st[0]:
+        for res in ch.get_residues():
+            if max_dist > 0 and res not in interface[ch.id]:
+                continue
+
+            # Get the energies
+            elec[res], elec_ala[res], vdw[res], vdw_ala[res] = calc_int_energies(st[0], res)
+            solvAB[res], solvAB_ala[res] = calc_solvation(st[0], res)
+            solvA[res], solvA_ala[res] = calc_solvation(st_chains[ch.id], st_chains[ch.id][0][ch.id][res.id[1]])
+
+            # Add the values
+            totalIntElec += elec[res]
+            totalIntVdw += vdw[res]
+            totalSolv += solvAB[res]
+            totalSolvMon[ch.id] += solvA[res]
+
+            total += elec[res] + vdw[res] + solvAB[res] - solvA[res]
+
+    print('{:20}: {:11.4f}'.format('Total Elec Int.', totalIntElec), file = result)
+    print('{:20}: {:11.4f}'.format('Total Vdw Int.', totalIntVdw), file = result)
+    print('{:20}: {:11.4f}'.format('Total Solv AB', totalSolv), file = result)
+    print('{:19}{}: {:11.4f}'.format('Total Solv ', chids[0], totalSolvMon[chids[0]]), file = result)
+    print('{:19}{}: {:11.4f}'.format('Total Solv ', chids[1], totalSolvMon[chids[1]]), file = result)
+    print('{:20}: {:11.4f}'.format('DG int AB-A-B', total), file = result)
+
