@@ -65,8 +65,8 @@ for at in st.get_atoms():
     at.xtra['atom_type'] = params.at_type
     at.xtra['charge'] = params.charge
     at.xtra['vdw'] = ff_params.at_types[at.xtra['atom_type']]
-
+    print(at.xtra['vdw'])
 # Calculating surfaces
 # The specific PATH to naccess script (in soft) is needed
 # Srf goes to .xtra field directly
-srf = NACCESS_atomic(st[0], naccess_binary='si/soft/NACCESS/naccess')
+#srf = NACCESS_atomic(st[0], naccess_binary='si/soft/NACCESS/naccess')
