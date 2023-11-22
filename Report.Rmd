@@ -1,0 +1,35 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# REPORT
+
+## Energy Analysis Exercise 2021-22 Spike RBD- ACE2 Protein-Protein Interface Analysis
+
+### Objective
+
+This practical aims to assess the impact of interface residues on the interaction energy within the protein-protein complex involving the Receptor Binding Domain (RBD) of the SARS-CoV-2 Spike Protein and its corresponding receptor, Angiotensin Converting Enzyme (ACE2). The analysis will be conducted utilizing Pymol and BioPython.
+
+### Introduction
+
+As an initial step in analyzing this wealth of information, we aim to assess the significance of amino acid residues that constitute the protein-protein interface, influencing the interaction energy within complex components. Our focus will be on the interaction between the Receptor Binding Domain of the SARS-CoV-2 Spike protein and its counterpart, the Angiotensin Converting Enzyme, serving as a case study for this examination.
+
+### Preparation of Protein-Protein Complex Structure
+
+#### Structure Retrieval:
+
+The structure required for analysis was obtained from the Protein Data Bank (PDB) using its respective identifier.
+
+#### Biological Unit Determination:
+
+Utilizing the PDB information, the composition of the "Biological unit" was investigated. All chains not involved in this biological unit were removed, ensuring focus solely on the essential components of the interaction.
+
+#### **Heteroatom Removal:**
+
+All heteroatoms within the structure were removed, streamlining the analysis to solely focus on the protein components relevant to the interaction.
+
+#### Q**uality Assessment and Refinement:**
+
+To ensure structural integrity, a comprehensive quality check was conducted. This involved the identification and addition of any missing side-chains, hydrogen atoms, and atom charges essential for a more accurate representation of the molecular interactions. The biobb_structure_checking module was employed for this purpose, ensuring a more robust and complete structural analysis.
