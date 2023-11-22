@@ -1,0 +1,5 @@
+To use the pipeline paste the pdb file that you want to get the energies.
+then execute thes comand in the folder containing the python script.
+```
+python3 pipeline_script.py "path to the pdb file"
+```
