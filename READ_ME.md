@@ -18,3 +18,5 @@ Simple vdw parameters (based on AMBER ff using Auto Dock compatible atom types)
     
 ##data/aaLib.lib
 Library for obtaining amino acid atom types and partial charges (also based on AMBER ff)
+
+
